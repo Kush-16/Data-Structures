@@ -98,9 +98,19 @@ class LinkedList:
             count+=1
         prev.next = curr_node.next
         curr_node = None
+        
+   #length of linklist
+    def length(self):
+        count = 0
+        itr = self.head
+        while itr:
+            count += 1
+            itr = itr.next
+        return print(count)
 
 
-#creating object to call class
+
+#creating object of call class
 llist = LinkedList()
 llist.append("a")
 llist.append("b")
@@ -111,3 +121,4 @@ llist.insert_bw(llist.head.next, llist.head.next.next,"M") #note
 llist.deletion("b")
 llist.del_with_index(2)
 llist.printlist()
+llist.length()
