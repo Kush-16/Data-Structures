@@ -1,0 +1,113 @@
+# LINKEDLIST:
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+# INSERT A NODE IN A LINKED LIST
+    def append(self, data):
+        new_node = Node(data)
+        # when we have empty Linkedlist
+        if self.head is None:
+            self.head = new_node
+            return new_node
+
+        #else we have to go till the last node in order to append.. so we start from starting of the LL
+        last_node = self.head
+        while last_node.next:
+            last_node = last_node.next
+
+        #once we reach the node where next is null
+        last_node.next = new_node
+
+    def printlist(self):
+        #to print.. we start with the first node's head and print till the end by pointing it to next at every iteration
+        node_with_data = self.head
+        while node_with_data:
+            print(node_with_data.data)
+            node_with_data = node_with_data.next
+
+    #if we want to insert in the starting of LL
+    def prepend(self, data):
+        node2 = Node(data)
+        # if self.head is None:
+        #     self.head = node2
+        #     return self.head
+
+        node2.next = self.head
+        self.head = node2
+
+    #insert in AFTER A NODE
+    def insert_af(self, prev_node, data):
+        new_node = Node(data)
+        if not prev_node:
+            print("prev node is not in the list")
+
+        new_node.next = prev_node.next
+        prev_node.next = new_node
+
+    #insert between two nodes
+    def insert_bw(self, fnode, snode, data):
+        new_node = Node(data)
+        fnode.next = new_node
+        new_node.next = snode
+
+#DELETE A NODE FROM LINKLIST
+
+    def deletion(self, key):
+        #checking if we have to delete a node from the starting of LL
+        curr_node = self.head
+        if curr_node is not None and curr_node.data == key:
+            self.head = curr_node.next
+            curr_node = None
+            return
+        #if we have to delete a node between two nodes
+        prev = None
+            # parse through the LL
+        while curr_node is not None and curr_node.data != key:
+            prev = curr_node
+            curr_node = curr_node.next
+
+        if curr_node is None:
+            return print("value not here")
+
+        prev.next = curr_node.next
+        curr_node = None
+
+
+    #DELETION OF NODE WITH GIVEN INDEX
+    def del_with_index(self, inx):
+        curr_node = self.head
+
+        if inx == 0:
+            self.head = curr_node.next
+            curr_node = None
+            return
+
+        prev = None
+        count = 1
+
+        while curr_node and count != inx:
+            prev = curr_node
+            curr_node = curr_node.next
+            count+=1
+        prev.next = curr_node.next
+        curr_node = None
+
+
+#creating object to call class
+llist = LinkedList()
+llist.append("a")
+llist.append("b")
+llist.prepend("c")
+llist.insert_af(llist.head.next,"f") #note
+llist.insert_af(llist.head.next.next.next,"g") #note
+llist.insert_bw(llist.head.next, llist.head.next.next,"M") #note
+llist.deletion("b")
+llist.del_with_index(2)
+llist.printlist()
