@@ -99,7 +99,7 @@ class LinkedList:
         prev.next = curr_node.next
         curr_node = None
         
-   #length of linklist
+# LENGTH OF LINKLIST
     def length(self):
         count = 0
         itr = self.head
