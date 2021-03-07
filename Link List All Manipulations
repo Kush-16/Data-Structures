@@ -107,6 +107,45 @@ class LinkedList:
             count += 1
             itr = itr.next
         return print(count)
+        
+        
+# SWAP TWO NODES IN A LINK LIST
+    def swap_nodes(self, node1, node2):
+        if node1 == node2:
+            return
+
+        # to locate first element which is needed to be swapped
+        prev1 = None
+        curr1 = self.head
+        while curr1 and curr1.data != node1:
+            prev1 = curr1
+            curr1 = curr1.next
+
+        # to locate the second element needed to be swapped
+        prev2 = None
+        curr2 = self.head
+        while curr2 and curr2.data != node1:
+            prev2 = curr2
+            curr2 = curr2.next
+
+        if not curr1 or not curr2:
+            return
+
+        if prev1:
+            # pointing the next of prev1 to the second element in the swapping pair
+            prev1.next = curr2
+        else:  # this means that one of the two elements were present on the head of LL
+            self.head = curr2
+
+        if prev2:
+            # pointing the next of prev2 to the first element in the swapping pair
+            prev2.next = curr1
+        else:  # this means that one of the two elements were present on the head of LL
+            self.head = curr1
+
+        # once everything is set.. we need to swap the ".next" of each node (which is supposed to be swapped) so that
+        # the order of LL is maintained
+        curr1.next, curr2.next = curr2.next, curr1.next
 
 
 
@@ -120,5 +159,6 @@ llist.insert_af(llist.head.next.next.next,"g") #note
 llist.insert_bw(llist.head.next, llist.head.next.next,"M") #note
 llist.deletion("b")
 llist.del_with_index(2)
+llist.swap_nodes("a","b")
 llist.printlist()
 llist.length()
