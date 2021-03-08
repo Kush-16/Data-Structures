@@ -146,6 +146,38 @@ class LinkedList:
         # once everything is set.. we need to swap the ".next" of each node (which is supposed to be swapped) so that
         # the order of LL is maintained
         curr1.next, curr2.next = curr2.next, curr1.next
+        
+# REVERSE A LINKED LIST using ITERATION APPROACH: https://www.youtube.com/watch?v=xFuJI29BiDY&list=PLzm76SF673uFdKzhm03SUaiv-9M8I98s6&index=11
+
+    def reverse(self):
+        prev = None
+        curr = self.head
+        while curr is not None:
+            # we need to store the pointer which is storing the value of next pointer(i.e B in starting) in a random
+            # variable so that we can flip the arrows A->B->C .... A<-B<-C
+            nxt = curr.next
+            ####### then we are
+            curr.next = prev  # A->B to A<-B
+            prev = curr
+            curr = nxt
+            # prev = None, curr = A, nxt = b...then prev = A, curr = B, nxt = C and so on...
+
+        # then we make the last node as head
+        self.head = prev
+
+# REVERSE A LINKED LIST using ITERATION APPROACH USING RECURRSION
+    def reverse_recurrion(self):
+
+        def _reverse_rec(curr, prev):
+            if not curr:
+                return prev
+            nxt = curr.next
+            ####### then we are
+            curr.next = prev  # A->B to A<-B
+            prev = curr
+            curr = nxt
+            return _reverse_rec(curr, prev)
+        self.head = _reverse_rec(curr = self.head, prev = None)
 
 
 
