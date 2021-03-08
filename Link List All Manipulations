@@ -180,17 +180,46 @@ class LinkedList:
         self.head = _reverse_rec(curr = self.head, prev = None)
 
 
+#REMOVE DUPLICATES
+    def remove_dup(self):
+        curr = self.head
+        prev = None
+        dict_duplicates = dict()
+        while curr:
 
-#creating object of call class
-llist = LinkedList()
-llist.append("a")
-llist.append("b")
-llist.prepend("c")
-llist.insert_af(llist.head.next,"f") #note
-llist.insert_af(llist.head.next.next.next,"g") #note
-llist.insert_bw(llist.head.next, llist.head.next.next,"M") #note
-llist.deletion("b")
-llist.del_with_index(2)
-llist.swap_nodes("a","b")
-llist.printlist()
-llist.length()
+            if curr.data in dict_duplicates:
+                #remove node
+                prev.next = curr.next
+                curr = None
+            else:
+                #have not encountered elements before
+                dict_duplicates[curr.data] = 1
+                prev = curr
+          
+            # once we find the curr node as a duplicate one.. we make prev.next in the curr variable. And here
+            # prev.next variable is pointing to the curr.next (which is the node next to the duplicate one)
+            curr = prev.next
+            
+            
+            
+# creating object to call class
+# llist = LinkedList()
+# llist.append("a")
+# llist.append("b")
+# llist.append("c")
+# llist.append("d")
+# llist.append("b")
+# llist.append("b")
+# llist.append("b")
+# # llist.swap_nodes("b","c")
+# # llist.reverse()
+# llist.remove_dup()
+# llist.printlist()
+# # llist.prepend("c")
+# # llist.insert_af(llist.head.next, "f")  # note
+# # llist.insert_af(llist.head.next.next.next, "g")  # note
+# # llist.insert_bw(llist.head.next, llist.head.next.next, "M")  # note
+# # llist.deletion("b")
+# # llist.del_with_index(2)
+# 
+# # llist.length()
