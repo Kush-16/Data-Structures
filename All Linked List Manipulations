@@ -199,7 +199,30 @@ class LinkedList:
             # once we find the curr node as a duplicate one.. we make prev.next in the curr variable. And here
             # prev.next variable is pointing to the curr.next (which is the node next to the duplicate one)
             curr = prev.next
-            
+
+# COUNT OCCURENCE OF A PARTICULAR VALUE IN A LINKEDLIST
+    def count_occurrences(self, data):
+
+        count = 0
+        curr = self.head
+        while curr:
+            if curr.data == data:
+                count +=1
+            curr = curr.next
+        return count
+
+# COUNT OCCURENCE USING RECURSSION
+
+    def count_recursive(self, node, data):
+        # here we are using node in the function because we want to use a dummy variable which can move to next and
+        # check if that node's value matches with data we are using the node variable because we have to perform
+        # recursion
+        if not node:
+            return 0
+        if node.data == data:
+            return 1+self.count_recursive(node.next, data)
+        else:
+            return 0+self.count_recursive(node.next, data)
             
             
 # creating object to call class
@@ -221,5 +244,7 @@ class LinkedList:
 # # llist.insert_bw(llist.head.next, llist.head.next.next, "M")  # note
 # # llist.deletion("b")
 # # llist.del_with_index(2)
+print(llist.count_occurrences("b"))
+print(llist.count_recursive(llist.head, "b"))
 # 
 # # llist.length()
